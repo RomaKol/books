@@ -1,33 +1,8 @@
-import React, {useState, useEffect, Fragment} from 'react';
-
-const Identifiers = props => {
-  const {identifiers} = props;
-  const identifiersArr = [];
-
-  for (let item in identifiers) {
-    identifiersArr.push(item);
-  }
-  return (
-    <div className="book__identifiers">
-      {
-        identifiersArr.map(item => {
-          return (<Fragment key={item}>
-            <p>{item}:</p>
-            <ul>
-              {
-                identifiers[item].map(idItem => <li key={idItem}>{idItem}</li>)
-              }
-            </ul>
-          </Fragment>)
-        })
-      }
-    </div>
-  );
-}
+import React from 'react';
+import Identifiers from './Identifiers';
 
 const Book = props => {
   const {book} = props;
-  console.log("book", book)
 
   return (
     <div className="book">

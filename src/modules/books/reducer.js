@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
     case 'BOOKS/GET_BOOK_FAILURE':
       return {...state, isFetching: false, isFetched: false};
     case 'BOOKS/GET_BOOK_SUCCESS':
-      return {...state, isFetching: false, isFetched: true, book: {...payload.data}};
+      return {...state, isFetching: false, isFetched: true, book: {...payload.book}};
     case 'BOOKS/RESET':
       return initialState;
     default:
