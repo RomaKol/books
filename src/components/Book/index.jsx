@@ -6,12 +6,12 @@ const Book = props => {
 
   return (
     <div className="book">
-      <h2 className="book__title">{book.title}</h2>
+      <h2 className="section-title book__title">{book.title}</h2>
       <p className="book__link"><a href={book.url} target="_blank">{book.url}</a></p>
       <p className="book__pages">Pages: {book.number_of_pages}</p>
       <p className="book__published">Publish date: {book.publish_date}</p>
       <div className="book__authors">
-        <h3 className="book__subtitle">Authors:</h3>
+        <h3 className="section-subtitle book__subtitle">Authors:</h3>
         <ul className="book__authors-list">
           {
             book.authors.map(author => {
@@ -22,7 +22,7 @@ const Book = props => {
           }
         </ul>
       </div>
-      <div className="book__cover"><img src={book.cover.medium}/></div>
+      <div className="book__cover"><img src={book.cover.medium} alt={book.title} title={book.title}/></div>
       <Identifiers identifiers={book.identifiers}/>
     </div>
   );

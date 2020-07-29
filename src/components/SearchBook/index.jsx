@@ -14,21 +14,23 @@ const SearchBook = props => {
   };
 
   return (
-    <div className="App">
-      <Input onSubmit={onSubmit}/>
-      {
-        isFetching &&
-        <div>Loading ...</div>
-      }
-      {
-        isFetched
-          ? (
-            book && book[`ISBN:${isbn}`]
-              ? <Book book={book[`ISBN:${isbn}`]}/>
-              : <div>Book not found</div>
-          )
-          : null
-      }
+    <div className="app-body">
+      <div className="container">
+        <Input onSubmit={onSubmit}/>
+        {
+          isFetching &&
+          <p>Loading ...</p>
+        }
+        {
+          isFetched
+            ? (
+              book && book[`ISBN:${isbn}`]
+                ? <Book book={book[`ISBN:${isbn}`]}/>
+                : <p>Book not found</p>
+            )
+            : null
+        }
+      </div>
     </div>
   );
 };

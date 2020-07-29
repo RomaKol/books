@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 
 const Identifiers = props => {
-  const {identifiers} = props;
+  const { identifiers } = props;
   const identifiersArr = [];
 
   for (let item in identifiers) {
@@ -9,21 +9,21 @@ const Identifiers = props => {
   }
   return (
     <div className="book__identifiers">
-      <h3 className="book__subtitle">Identifiers: </h3>
+      <h3 className="section-subtitle book__subtitle">Identifiers: </h3>
       {
         identifiersArr.map(item => {
           return (<Fragment key={item}>
-            <p>{item}:</p>
+            <p><b>{item}:</b></p>
             <ul>
               {
                 identifiers[item].map(idItem => <li key={idItem}>{idItem}</li>)
               }
             </ul>
-          </Fragment>)
+          </Fragment>);
         })
       }
     </div>
   );
-}
+};
 
 export default Identifiers;
