@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
+import BooksModule from 'modules/books';
+import Book from 'components/Book';
+import Input from 'components/Input';
 
-function App() {
+
+const App = props => {
+  const {getBook, book, isFetching, isFetched} = props;
+  const [isbn, setIsbn] = useState('');
+
+  const onSubmit = (value) => {
+    setIsbn(value);
+    getBook(value);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Input onSubmit={onSubmit} />
+      {
+        isFetched
+          ? (
+            book && book[`ISBN:${isbn}`]
+              ? <Book book={book[`ISBN:${isbn}`]}/>
+              : <div>Book not found</div>
+          )
+          : null
+      }
     </div>
   );
 }
 
-export default App;
+export default connect(
+  (state) => ({
+    book: state.books.book,
+    isFetching: state.books.isFetching,
+    isFetched: state.books.isFetched,
+  }),
+  {
+    getBook: BooksModule.getBook,
+  }
+)(App);
